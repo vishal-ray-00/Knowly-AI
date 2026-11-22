@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+:root {
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-serif: "Source Serif 4", Georgia, serif;
+
+    --color-paper: #faf8f5;
+    --color-surface: #ffffff;
+    --color-ink: #1c1917;
+    --color-muted: #78716c;
+    --color-line: #e7e2da;
+    --color-accent: #1f5c4a;
+    --color-accent-hover: #174536;
+}
+
+@layer base {
+    body {
+        background-color: var(--color-paper);
+        color: var(--color-ink);
+        font-family: var(--font-sans);
+    }
+}
