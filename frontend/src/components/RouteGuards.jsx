@@ -20,5 +20,5 @@ export function ProtectedRoute({ children }) {
 export function GuestRoute({ children }) {
     const { user, loading } = useAuth();
     if (loading) return <Spinner />;
-    return user ? <Navigate to="/" replace /> : children;
+    return user ? <Navigate to="/app" replace /> : children;
 }

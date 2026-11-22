@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../ui/Button";
 import { DocIcon } from "../ui/Icons";
+import Bubble from "../ui/Bubble";
 
 const conversation = [
   {
@@ -45,20 +46,6 @@ function Stat({ value, label }) {
   );
 }
 
-function Bubble({ side, position, children }) {
-  const user = side === "user";
-  return (
-    <div
-      className={`rise absolute z-10 max-w-[84%] rounded-[22px] px-4 py-3 text-[13px] leading-snug shadow-[0_8px_24px_rgba(70,30,140,0.12)] sm:text-[15px] ${
-        user
-          ? "bg-lilac-100 text-[#3b2a63]"
-          : "bg-white text-ink"
-      } ${position}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 function HeroDemo() {
   const [visibleCount, setVisibleCount] = useState(() =>

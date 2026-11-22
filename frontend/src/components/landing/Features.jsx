@@ -42,29 +42,29 @@ function MockWindow({ view }) {
         </ul>
       </aside>
 
-      <div className="min-w-0 flex-1 p-5 sm:p-7">
-        <h4 className="font-serif text-2xl tracking-tight sm:text-[32px]">
+      <div className="min-w-0 flex-1 p-4 sm:p-5">
+        <h4 className="font-serif text-xl tracking-tight sm:text-[26px]">
           Operating Systems Notes
         </h4>
-        <p className="mt-1 text-sm text-muted">Sample document</p>
+        <p className="mt-1 text-xs text-muted sm:text-sm">Sample document</p>
 
-        <div className="mt-4 flex gap-2 text-sm">
+        <div className="mt-3 flex gap-2 text-xs sm:text-sm">
           <span
-            className={`rounded-full px-4 py-2 font-medium ${view === 0 ? "bg-brand text-white" : "bg-[#f2f1f3]"}`}
+            className={`rounded-full px-3 py-1.5 font-medium ${view === 0 ? "bg-brand text-white" : "bg-[#f2f1f3]"}`}
           >
             Chat
           </span>
           <span
-            className={`rounded-full px-4 py-2 font-medium ${view === 1 ? "bg-brand text-white" : "bg-[#f2f1f3]"}`}
+            className={`rounded-full px-3 py-1.5 font-medium ${view === 1 ? "bg-brand text-white" : "bg-[#f2f1f3]"}`}
           >
             Sources
           </span>
-          <span className="rounded-full bg-[#f2f1f3] px-4 py-2 font-medium">
+          <span className="rounded-full bg-[#f2f1f3] px-3 py-1.5 font-medium">
             Settings
           </span>
         </div>
 
-        <div className="mt-5 grid grid-cols-2 gap-4 rounded-2xl bg-lilac-100 p-4 text-sm sm:grid-cols-4">
+        <div className="mt-3 grid grid-cols-2 gap-2 rounded-2xl bg-lilac-100 p-3 text-xs sm:grid-cols-4 sm:text-sm">
           {[
             ["Status", "Ready"],
             ["Pages", "42"],
@@ -79,20 +79,20 @@ function MockWindow({ view }) {
         </div>
 
         {view === 0 ? (
-          <div className="mt-5 space-y-3">
-            <div className="rounded-2xl bg-[#f8f7f9] p-4">
+          <div className="mt-3 space-y-2">
+            <div className="rounded-2xl bg-[#f8f7f9] p-3">
               <p className="text-xs uppercase tracking-wide text-muted">
                 Question
               </p>
-              <p className="mt-1 text-[15px]">
+              <p className="mt-1 text-sm">
                 What are the conditions for deadlock?
               </p>
             </div>
-            <div className="rounded-2xl bg-[#f8f7f9] p-4">
+            <div className="rounded-2xl bg-[#f8f7f9] p-3">
               <p className="text-xs uppercase tracking-wide text-muted">
                 Answer
               </p>
-              <p className="mt-1 font-serif text-lg leading-relaxed">
+              <p className="mt-1 font-serif text-base leading-snug sm:text-lg">
                 Four conditions must hold at once: mutual exclusion, hold and
                 wait, no preemption, and circular wait.
               </p>
@@ -118,11 +118,11 @@ function MockWindow({ view }) {
                 "The four necessary conditions are mutual exclusion, hold and wait, no preemption, and circular wait.",
               ],
             ].map(([page, text]) => (
-              <div key={page} className="rounded-2xl bg-[#f8f7f9] p-4">
+              <div key={page} className="rounded-2xl bg-[#f8f7f9] p-3">
                 <span className="rounded-full bg-lilac-100 px-2.5 py-1 text-xs font-medium text-brand">
                   {page}
                 </span>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted">
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">
                   {text}
                 </p>
               </div>
@@ -140,14 +140,14 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="scroll-mt-28 bg-[radial-gradient(60%_50%_at_100%_0%,#efe6fb_0%,transparent_70%)] py-20"
+      className="scroll-mt-24 bg-[radial-gradient(60%_50%_at_100%_0%,#efe6fb_0%,transparent_70%)] py-12 sm:py-16"
     >
       <div className="mx-auto max-w-[1800px] px-4 sm:px-8">
-        <h2 className="max-w-[18ch] font-serif text-[42px] leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[72px]">
+        <h2 className="max-w-[18ch] font-serif text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.02] tracking-[-0.03em]">
           One place to ask, one place to check
         </h2>
 
-        <div className="mt-16 grid gap-10 md:grid-cols-2">
+        <div className="mt-8 grid gap-6 md:grid-cols-2 sm:mt-10 sm:gap-8">
           {tabs.map((tab, i) => (
             <button
               key={tab.tag}
@@ -159,11 +159,11 @@ export default function Features() {
               <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white/70 px-4 py-2 text-[15px] text-brand">
                 <tab.Icon width={18} height={18} /> {tab.tag}
               </span>
-              <h3 className="mt-6 font-serif text-[34px] leading-tight tracking-[-0.02em] sm:text-[44px]">
+              <h3 className="mt-4 font-serif text-[28px] leading-tight tracking-[-0.02em] sm:text-[36px]">
                 {tab.title}
               </h3>
               <div className="mt-3 flex items-end justify-between gap-6">
-                <p className="max-w-[32rem] text-lg leading-relaxed text-muted sm:text-[22px]">
+                <p className="max-w-[32rem] text-base leading-relaxed text-muted sm:text-lg">
                   {tab.text}
                 </p>
                 <span className="mb-2 hidden h-2.5 w-[60px] shrink-0 overflow-hidden rounded-full bg-ink/10 sm:block">
@@ -180,8 +180,8 @@ export default function Features() {
           ))}
         </div>
 
-        <div className="grain-frame mt-12 rounded-[40px] p-4 sm:p-10">
-          <div className="relative h-[560px] md:h-[600px]">
+        <div className="grain-frame mt-8 rounded-[32px] p-3 sm:mt-10 sm:p-6">
+          <div className="relative h-[470px] md:h-[420px]">
             {[0, 1].map((i) => (
               <div
                 key={i}
