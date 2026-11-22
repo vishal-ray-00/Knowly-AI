@@ -1,22 +1,102 @@
 @import "tailwindcss";
 
-:root {
+@theme {
     --font-sans: "Inter", system-ui, sans-serif;
     --font-serif: "Source Serif 4", Georgia, serif;
 
-    --color-paper: #faf8f5;
+    --color-page: #fdfcf9;
+    --color-ink: #121014;
+    --color-muted: #5f5b66;
+    --color-line: #ece8f3;
+    --color-brand: #8b3fe6;
+    --color-brand-mid: #190636;
+    --color-night: #1d0f3b;
+    --color-lilac-50: #f7f3fd;
+    --color-lilac-100: #efe8fb;
+    --color-lilac-200: #e2d6f8;
+
+    /* aliases so the earlier auth page and dashboard keep working until restyled */
+    --color-paper: var(--color-page);
     --color-surface: #ffffff;
-    --color-ink: #1c1917;
-    --color-muted: #78716c;
-    --color-line: #e7e2da;
-    --color-accent: #1f5c4a;
-    --color-accent-hover: #174536;
+    --color-accent: var(--color-brand);
+    --color-accent-hover: #7b30d4;
 }
 
 @layer base {
+    html {
+        scroll-behavior: smooth;
+    }
     body {
-        background-color: var(--color-paper);
+        background-color: var(--color-page);
         color: var(--color-ink);
         font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+@layer components {
+    .grain-frame {
+        position: relative;
+        isolation: isolate;
+        background:
+            radial-gradient(120% 80% at 0% 0%, #b48cf0 0%, transparent 55%),
+            radial-gradient(90% 70% at 100% 0%, #e3a6e0 0%, transparent 60%),
+            radial-gradient(100% 90% at 0% 100%, #8fa0f2 0%, transparent 55%),
+            linear-gradient(160deg, #9a62ea 0%, #6a2fd0 55%, #4b1fa8 100%);
+    }
+    .grain-frame::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        opacity: 0.35;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .grain-frame > * {
+        position: relative;
+        z-index: 1;
+    }
+    .orb {
+        border-radius: 9999px;
+        background: radial-gradient(
+            circle at 30% 25%,
+            #e7b8f5 0%,
+            #a56af0 35%,
+            #6a2fd8 65%,
+            #4a1ca8 100%
+        );
+    }
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+@keyframes fill {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+.rise {
+    animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rise {
+        animation: none;
+    }
+    html {
+        scroll-behavior: auto;
     }
 }
