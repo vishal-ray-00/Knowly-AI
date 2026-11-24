@@ -16,7 +16,7 @@ const chunkSchema = new mongoose.Schema(
         text: { type: String, required: true },
         pageNumber: { type: Number, required: true },
         chunkIndex: { type: Number, required: true },
-        embedding: { type: [Number], required: true },
+        embedding: { type: [Number], },
     },
     { timestamps: true }
 );
