@@ -26,3 +26,7 @@ export const ChevronIcon = make("M6 9l6 6 6-6");
 export const PlusIcon = make("M12 5v14M5 12h14");
 export const MenuIcon = make("M4 7h16M4 12h16M4 17h16");
 export const ChatIcon = make("M4 5h16v11H9l-5 4z");
+export const TrashIcon = make(
+    "M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"
+);
+export const UploadIcon = make("M12 16V4M7 9l5-5 5 5M4 20h16");
