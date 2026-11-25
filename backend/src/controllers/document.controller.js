@@ -1,14 +1,9 @@
-import mongoose from "mongoose";
 import Document from "../models/document.model.js";
 import Chunk from "../models/chunk.model.js";
 import { processDocument } from "../services/document.processor.js";
 import { deletePdf } from "../services/storage.service.js";
+import { findOwnedDocument } from "../services/document.service.js";
 
-// Every lookup includes the owner, so users can only reach their own documents
-const findOwnedDocument = async (id, userId) => {
-    if (!mongoose.isValidObjectId(id)) return null;
-    return Document.findOne({ _id: id, user: userId });
-};
 
 const notFound = (res) =>
     res.status(404).json({ success: false, message: "Document not found" });
@@ -83,34 +78,6 @@ export const getDocument = async (req, res) => {
     }
 };
 
-// Temporary: lets you check chunk quality. Removed once real search exists.
-export const previewChunks = async (req, res) => {
-    try {
-        const document = await findOwnedDocument(req.params.id, req.user._id);
-        if (!document) return notFound(res);
-
-        const chunks = await Chunk.find({
-            document: document._id,
-            user: req.user._id,
-        })
-            .select("-embedding")
-            .sort({ chunkIndex: 1 })
-            .limit(5)
-            .lean();
-
-        res.status(200).json({
-            success: true,
-            total: document.chunkCount,
-            chunks,
-        });
-    } catch (error) {
-        console.error("Preview chunks error:", error);
-        res.status(500).json({
-            success: false,
-            message: "Failed to fetch chunks",
-        });
-    }
-};
 
 export const deleteDocument = async (req, res) => {
     try {
