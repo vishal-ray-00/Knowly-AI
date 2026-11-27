@@ -3,6 +3,7 @@ import Chunk from "../models/chunk.model.js";
 import { processDocument } from "../services/document.processor.js";
 import { deletePdf } from "../services/storage.service.js";
 import { findOwnedDocument } from "../services/document.service.js";
+import { deleteChatsForDocument } from "../services/chat.service.js";
 
 
 const notFound = (res) =>
@@ -92,6 +93,7 @@ export const deleteDocument = async (req, res) => {
         }
 
         await Chunk.deleteMany({ document: document._id });
+        await deleteChatsForDocument(document._id);
 
         if (document.publicId) {
             await deletePdf(document.publicId).catch((error) =>
